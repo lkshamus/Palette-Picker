@@ -12,10 +12,10 @@
   font-size: 30px;
   margin: 20px;
   text-align: center;
-  color: pink;
+  color: grey;
 }
 
-.color-palette, .color-palette1, .color-palette2, .color-palette3, .color-palette4, .color-palette5 {
+.color-palette {
   display: inline-block;
   border: 1px solid black;
   width: 200px;
