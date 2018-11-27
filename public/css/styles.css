@@ -22,6 +22,36 @@
   height: 450px;
 }
 
+.color-palette1, 
+.color-palette2,
+.color-palette3,
+.color-palette4,
+.color-palette5 {
+  background-image: url('images/unlocked.svg');
+  background-size: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+
+/*.color-palette1:active, 
+.color-palette2:active,
+.color-palette3:active,
+.color-palette4:active,
+.color-palette5:active {
+  background-image: url('images/locked.svg');
+  background-size: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+*/
+
+.locked {
+  background-image: url('images/locked.svg');
+  background-size: 50px;
+}
+
+
 .project-header {
   margin: 10px 0 50px 0;
 }
