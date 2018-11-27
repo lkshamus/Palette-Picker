@@ -1,0 +1,43 @@
+* {
+  margin: auto 0;
+  font-family: 'Muli', sans-serif;
+}
+
+.title {
+  margin: 20px;
+  text-align: center;
+  color: pink;
+}
+
+.color-palette {
+  display: inline-block;
+  border: 1px solid black;
+  width: 200px;
+  height: 500px;
+}
+
+.project-header {
+  margin: 10px 0 100px 50px;
+}
+
+.color-container {
+  display: flex;
+  justify-content: center;
+}
+
+.new-project {
+  display: flex;
+  justify-content: center;
+}
+
+.bottom {
+  text-align: center;
+}
+
+.generate-btn {
+  margin: 30px;
+}
+
+input {
+  outline: none;
+}
