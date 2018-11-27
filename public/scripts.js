@@ -14,5 +14,14 @@ function setRandomColor(e) {
   }
 }
 
+function setRandomColorText(e) {
+  e.preventDefault();
+  for (let i = 0; i < 10; i++) {
+    $(`.color${i}`).css('color', getRandomColor());
+  }
+}
+
 document.querySelector('.generate-btn').addEventListener('click', setRandomColor)
+document.querySelector('.generate-btn').addEventListener('click', setRandomColorText)
 document.addEventListener("DOMContentLoaded", setRandomColor);
+document.addEventListener("DOMContentLoaded", setRandomColorText);
