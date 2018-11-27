@@ -19,7 +19,7 @@
   display: inline-block;
   border: 1px solid black;
   width: 200px;
-  height: 500px;
+  height: 450px;
 }
 
 .project-header {
@@ -42,6 +42,10 @@
 
 .generate-btn {
   margin: 30px;
+}
+
+.palette-input {
+  margin: 0 0 20px 0;
 }
 
 input {
