@@ -15,3 +15,4 @@ function setRandomColor(e) {
 }
 
 document.querySelector('.generate-btn').addEventListener('click', setRandomColor)
+document.addEventListener("DOMContentLoaded", setRandomColor);
