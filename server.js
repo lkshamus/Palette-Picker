@@ -12,14 +12,16 @@ app.get('/', (request, response) => {
   response.sendFile('./index.html', {root: 'public' })
 })
 
-app.listen(app.get('port'), () => {
-  console.log(`${app.locals.title} is running on ${app.get('port')}`);
-});
-
 app.locals.title = 'Palette Picker'
 
 app.locals.palettes = [
-  {id: 1, name: 'project1', hex1: '12345', hex2: '23456', hex3: '345678', hex4: '45678', hex5: '56789'}
+  {id: 1, name: 'project1', hex1: '12345', hex2: '23456', hex3: '345678', hex4: '45678', hex5: '56789', projectId: 1}
 ]
 
-app.get('/api/v1/palettes')
+app.get('/api/v1/palettes', (request, response) => {
+
+})
+
+app.listen(app.get('port'), () => {
+  console.log(`${app.locals.title} is running on ${app.get('port')}`);
+});
