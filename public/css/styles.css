@@ -33,6 +33,27 @@
   background-position: center;
 }
 
+/*.lock {
+  background-image: url('images/unlocked.svg');
+  background-size: 50px;
+  background-repeat: no-repeat;
+  background-position: center;
+}*/
+
+.new-class1,
+.new-class2, 
+.new-class3, 
+.new-class4, 
+.new-class5 {
+  background-image: url('images/locked.svg');
+  background-size: 50px;
+  background-repeat: no-repeat;
+  background-position: center; 
+  display: inline-block;
+  border: 1px solid black;
+  width: 200px;
+  height: 450px;
+}
 
 /*.color-palette1:active, 
 .color-palette2:active,
