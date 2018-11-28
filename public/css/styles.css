@@ -26,18 +26,18 @@
 .color-palette3,
 .color-palette4,
 .color-palette5 {
-  background-image: url('images/unlocked.svg');
+  /*background-image: url('images/unlocked.svg');*/
   background-size: 50px;
   background-repeat: no-repeat;
   background-position: center;
 }
 
-/*.lock {
+.lock {
   background-image: url('images/unlocked.svg');
   background-size: 50px;
   background-repeat: no-repeat;
   background-position: center;
-}*/
+}
 
 .new-class1,
 .new-class2, 
