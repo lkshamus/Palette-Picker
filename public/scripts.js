@@ -31,17 +31,12 @@ document.addEventListener("DOMContentLoaded", setRandomColorText);
 function lockColor(e) {
   for (let i = 0; i < 6; i ++) {
     if (e.target.classList.contains(`color-palette${i}`)) {
-      console.log(i)
-      console.log(`color-palette${i}`)
       let color = $(this).css('background-color')
       console.log(color)
       $(`.color-palette${i}`).addClass(`new-class${i}`)
-      $(`new-class${i}`).css('color', color)
-      // $(`.color-palette${i}`).toggle(`new-class${i}`)
-      // $(`.new-class${i}`).toggle(`color-palette${i}`)
-      // if (e.target.classList.contains(`new-class${i}`)){
-      //   $(`.color-palette${i}`).removeClass(`new-class${i}`)
-      // }
+      // $(`new-class${i}`).css('color', color)
+      // $(`.color-palette${i}`).toggleClass(`new-class${i}`)
+      $(`.new-class${i}`).toggleClass(`color-palette${i}`)
     }
   }
 }
