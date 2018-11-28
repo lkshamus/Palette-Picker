@@ -10,7 +10,6 @@ projectsData = [
   } 
 ]
 
-
 const createProject = (knex, project) => {
   return knex('projects').insert({
     title: project.title,
