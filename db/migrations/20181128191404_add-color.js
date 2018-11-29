@@ -10,7 +10,7 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-    return knex.schema.table('papers', function(table) {
+    return knex.schema.table('palettes', function(table) {
     table.dropColumn('color1')
     table.dropColumn('color2')
     table.dropColumn('color3')

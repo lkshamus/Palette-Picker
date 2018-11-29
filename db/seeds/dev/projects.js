@@ -1,13 +1,13 @@
 
-projectsData = [
+paletteData = [
   {
     title: 'Project1',
-    colors: ['#fffff', '#12345', '#h6sn9a', '#823hss', '#l9a87s']
-  },
-  {
-    title: 'Project2',
-    colors: ['#ffafa', '#h2r45', '#76so9d', '#4o3hss', '#nja87s']   
-  } 
+    colors: ['#ffafa', '#h2r45', '#76so9d', '#4o3hss', '#nja87s']
+  }
+  // {
+  //   title: 'Project2',
+  //   colors: ['red', 'blue', 'green', 'yellow', 'orange'] 
+  // } 
 ]
 
 const createProject = (knex, project) => {
@@ -16,9 +16,16 @@ const createProject = (knex, project) => {
   }, 'id')
   .then(projectIds => {
     let palettePromises = project.colors.map(palette => {
+      console.log('look here', project.palette)
       return createPalette(knex, {
-        title: palette.title, 
-        colors: palette.colors,
+        title: project.title, 
+        colors: [palette, palette, palette, palette, palette],
+        color1: palette,
+        color2: palette, 
+        color2: palette, 
+        color3: palette,
+        color4: palette,
+        color5: palette,
         project_id: projectIds[0]
       })
     })
@@ -27,16 +34,33 @@ const createProject = (knex, project) => {
   })
 }
 
-const createPalette = (knex, palette) => {
-  return knex('palettes').insert(palette)
-}
+// const createPalette = (knex, palettes) => {
+//   Object.values(palettes).map(palette => {
+//     console.log(palette)
+//     return knex('palettes').insert(palettes.palette)
+//   })
+// }
 
+// const createPalette = (knex, palettes) => {
+//   console.log('before the loop', palettes)
+//   for (let i in palettes) {
+//     // console.log(palettes)
+//     return knex('palettes').insert(palettes.palette)
+//   }
+// }
+
+const createPalette = (knex, color) => {
+  // let palette = Object.values(color)[3]
+  console.log(color.color1)
+  return knex('palettes').insert(color)
+}
 
 exports.seed = function(knex, Promise) {
   return knex('palettes').del()
     .then(() => knex('projects').del())
     .then(() => {
-      let projectPromises = projectsData.map(project => {
+      let projectPromises = paletteData.map(project => {
+        // console.log(project)
         return createProject(knex, project)
       })
 
