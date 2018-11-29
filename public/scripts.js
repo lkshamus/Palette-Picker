@@ -10,9 +10,11 @@ function getRandomColor() {
 function setRandomColor(e) {
   e.preventDefault();
   for (let i = 0; i < 6; i++) {
-    $(`.color-palette${i}`).css('background-color', getRandomColor());
-    let color = i + ' ' + getRandomColor();
-    console.log(color)
+    if(!$(`.color-palette${i}`).hasClass(`new-class${i}`)){
+      $(`.color-palette${i}`).css('background-color', getRandomColor());
+      let color = i + ' ' + getRandomColor();
+      console.log(color)
+    }
   }
 }
 
