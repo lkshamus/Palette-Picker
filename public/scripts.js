@@ -12,7 +12,8 @@ function setRandomColor(e) {
   for (let i = 0; i < 6; i++) {
     if(!$(`.color-palette${i}`).hasClass(`new-class${i}`)){
       $(`.color-palette${i}`).css('background-color', getRandomColor());
-      let color = i + ' ' + getRandomColor();
+      let color = getRandomColor();
+      $(`.color-txt${i}`).text(color)
       console.log(color)
     }
   }
