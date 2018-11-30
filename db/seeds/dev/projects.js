@@ -1,13 +1,14 @@
-
-paletteData = [
-  {
-    title: 'Project1',
-    colors: ['#ffafa', '#h2r45', '#76so9d', '#4o3hss', '#nja87s']
-  }
-  // {
-  //   title: 'Project2',
-  //   colors: ['red', 'blue', 'green', 'yellow', 'orange'] 
-  // } 
+let projectsData = [{
+  title: 'Project1',
+  palettes: [{
+    title: 'sunny',
+    color1: 'red',
+    color2: 'blue',
+    color3: 'green',
+    color4: 'orange',
+    color5: 'purple',
+  }]
+}
 ]
 
 const createProject = (knex, project) => {
@@ -15,17 +16,14 @@ const createProject = (knex, project) => {
     title: project.title,
   }, 'id')
   .then(projectIds => {
-    let palettePromises = project.colors.map(palette => {
-      console.log('look here', project.palette)
-      return createPalette(knex, {
-        title: project.title, 
-        colors: [palette, palette, palette, palette, palette],
-        color1: palette,
-        color2: palette, 
-        color2: palette, 
-        color3: palette,
-        color4: palette,
-        color5: palette,
+    let palettePromises = project.palettes.map(palette => {
+      return createPalettes(knex, {
+        title: palette.title,
+        color1: palette.color1,
+        color2: palette.color2,
+        color3: palette.color3,
+        color4: palette.color4,
+        color5: palette.color5,
         project_id: projectIds[0]
       })
     })
@@ -34,38 +32,20 @@ const createProject = (knex, project) => {
   })
 }
 
-// const createPalette = (knex, palettes) => {
-//   Object.values(palettes).map(palette => {
-//     console.log(palette)
-//     return knex('palettes').insert(palettes.palette)
-//   })
-// }
-
-// const createPalette = (knex, palettes) => {
-//   console.log('before the loop', palettes)
-//   for (let i in palettes) {
-//     // console.log(palettes)
-//     return knex('palettes').insert(palettes.palette)
-//   }
-// }
-
-const createPalette = (knex, color) => {
-  // let palette = Object.values(color)[3]
-  console.log(color.color1)
-  return knex('palettes').insert(color)
+const createPalettes = (knex, palette) => {
+  return knex('palettes').insert(palette)
 }
+
 
 exports.seed = function(knex, Promise) {
   return knex('palettes').del()
     .then(() => knex('projects').del())
     .then(() => {
-      let projectPromises = paletteData.map(project => {
-        // console.log(project)
+      let projectPromises = projectsData.map(project => {
         return createProject(knex, project)
       })
-
       return Promise.all(projectPromises)
     })
-    .then(() => console.log('Successfully seeded db'))
-    .catch(error => console.log(`Error seeding db: ${error.message}`))
+    .then(() => console.log('Successfully seeded database'))
+    .catch(error => console.log(`Error seeding database: ${error.message}`))
 };
