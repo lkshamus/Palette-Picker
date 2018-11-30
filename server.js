@@ -42,7 +42,7 @@ app.post('/api/v1/projects', (request, response) => {
   const project = request.body
 
   for(let requiredParam of ['title']) {
-    if(!paper[requiredParam]) {
+    if(!project[requiredParam]) {
       response.status(422).json({ error: 'Missing required param' })
     }
   }
