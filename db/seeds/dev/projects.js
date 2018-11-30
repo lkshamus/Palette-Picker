@@ -1,11 +1,22 @@
 let projectsData = [{
   title: 'Project1',
   palettes: [{
-    title: 'sunny',
+    title: 'palette1',
     color1: 'red',
     color2: 'blue',
     color3: 'green',
     color4: 'orange',
+    color5: 'purple',
+  }]
+},
+{
+  title: 'Project2',
+  palettes: [{
+    title: 'palette1',
+    color1: 'black',
+    color2: 'white',
+    color3: 'grey',
+    color4: 'pink',
     color5: 'purple',
   }]
 }
