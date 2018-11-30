@@ -42,6 +42,31 @@ function lockColor(e) {
   }
 }
 
+function saveBtn(e) {
+  e.preventDefault()
+  createProject()
+} 
+
+
+const createProject = async () => {
+  let projectName = document.querySelector('.project').value
+  const url = '/api/v1/projects'
+
+  const optionsObject = {
+    method: "POST", 
+    body: JSON.stringify({title: projectName}),
+    credentials: "same-origin", 
+    headers: {
+      "Content-Type": "application/json",
+    }
+  }
+
+  const response = await fetch(url, optionsObject);
+  return await response.json();
+}
+
+document.querySelector('.save').addEventListener('click', saveBtn)
+
 document.querySelector('.color-palette1').addEventListener('click', lockColor)
 document.querySelector('.color-palette2').addEventListener('click', lockColor)
 document.querySelector('.color-palette3').addEventListener('click', lockColor)
