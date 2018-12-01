@@ -74,15 +74,16 @@ const fetchProjects = () => {
       console.log((projects));
       projects.map(project => {
         console.log(project.title)
-        let newProject = document.createElement('p')
+        let newProject = document.createElement('li')
         newProject.innerHTML =
           `<p>${project.title}</p>`
-        let listProjects = document.querySelector('.project-header')
+        let listProjects = document.querySelector('.list')
         listProjects.appendChild(newProject) 
       })  
     });  
 }
 
+document.addEventListener("DOMContentLoaded", fetchProjects);
 document.querySelector('.save').addEventListener('click', saveBtn)
 
 document.querySelector('.color-palette1').addEventListener('click', lockColor)
