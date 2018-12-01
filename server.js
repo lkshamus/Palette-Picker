@@ -43,7 +43,7 @@ app.post('/api/v1/projects', (request, response) => {
 
   for(let requiredParam of ['title']) {
     if(!project[requiredParam]) {
-      response.status(422).json({ error: 'Missing required param' })
+      response.status(422).json({ error: 'Missing required param test' })
     }
   }
 
@@ -55,6 +55,41 @@ app.post('/api/v1/projects', (request, response) => {
       response.status(500).json({ error: error.message })
     })
 })
+
+
+
+
+
+app.post('/api/v1/projects/palettes', (request, response) => {
+
+  const palette = request.body
+  console.log
+
+  for(let requiredParam of ['title']) {
+    console.log('required param', requiredParam)
+    if(!palette[requiredParam]) {
+      response.status(422).json({ error: 'Missing required param' })
+    }
+  }
+
+  database('palettes').insert(palette, 'id')
+    .then(paletteIds => {
+      response.status(201).json({ id: paletteIds[0] })
+    })
+    .catch(error => {
+      response.status(500).json({ error: error.message })
+    })
+})
+
+
+
+
+
+
+
+
+
+
 
 app.get('/api/v1/projects/:id', (request, response) => {
   const { id } = request.params
