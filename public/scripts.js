@@ -14,7 +14,6 @@ function setRandomColor(e) {
       $(`.color-palette${i}`).css('background-color', getRandomColor());
       let color = getRandomColor();
       $(`.color-txt${i}`).text(color)
-      console.log(color)
     }
   }
 }
@@ -34,7 +33,6 @@ document.addEventListener("DOMContentLoaded", setRandomColorText);
 function lockColor(e) {
   for (let i = 0; i < 6; i ++) {
     if (e.target.classList.contains(`color-palette${i}`)) {
-      console.log('do u work')
       let color = $(this).css('background-color')
       $(`new-class${i}`).css('color', color)
       $(`.color-palette${i}`).toggleClass(`new-class${i}`, `.lock`)
@@ -79,6 +77,11 @@ const fetchProjects = () => {
           `<p>${project.title}</p>`
         let listProjects = document.querySelector('.list')
         listProjects.appendChild(newProject) 
+        let displayProject = document.createElement('option')
+        let displayList = document.querySelector('select')
+        displayProject.innerHTML = 
+          `<option>${project.title}<option>`
+        displayList.appendChild(displayProject)
       })  
     });  
 }
