@@ -45,13 +45,13 @@ function lockColor(e) {
 function saveBtn(e) {
   e.preventDefault()
   createProject()
+  fetchProjects()
 } 
-
 
 const createProject = async () => {
   let projectName = document.querySelector('.project').value
   const url = '/api/v1/projects'
-
+  document.querySelector('.new-project').reset()
   const optionsObject = {
     method: "POST", 
     body: JSON.stringify({title: projectName}),
@@ -63,6 +63,24 @@ const createProject = async () => {
 
   const response = await fetch(url, optionsObject);
   return await response.json();
+}
+
+const fetchProjects = () => {
+  fetch('/api/v1/projects')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(projects) {
+      console.log((projects));
+      projects.map(project => {
+        console.log(project.title)
+        let newProject = document.createElement('p')
+        newProject.innerHTML =
+          `<p>${project.title}</p>`
+        let listProjects = document.querySelector('.project-header')
+        listProjects.appendChild(newProject) 
+      })  
+    });  
 }
 
 document.querySelector('.save').addEventListener('click', saveBtn)
