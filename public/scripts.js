@@ -7,10 +7,10 @@ function getRandomColor() {
   return color;
 }
 
+let colors = []
 const setRandomColor = async (e) => {
-  let colors = []
   e.preventDefault();
-  for (let i = 0; i < 6; i++) { 
+  for (let i = 1; i < 6; i++) { 
     if(!$(`.color-palette${i}`).hasClass(`new-class${i}`)){
       $(`.color-palette${i}`).css('background-color', getRandomColor());
       let color = getRandomColor();
@@ -18,9 +18,11 @@ const setRandomColor = async (e) => {
       colors.push(color)
     }
   }
-  if (document.querySelector('.palette-input').value.length == 0) {
-    return 
-  } else {
+  console.log('before post', colors)
+}
+
+const palettePicker = async (e) => {
+    e.preventDefault()
     let paletteName = document.querySelector('.palette-input').value
     const url = 'api/v1/projects/palettes'
     projectName = document.querySelector('select').value
@@ -35,9 +37,14 @@ const setRandomColor = async (e) => {
       }
     }
       const response = await fetch(url, optionsObject);
+      colors = [];
+      console.log('after', colors)
       return await response.json();
   }
-}
+
+// }
+
+// }
 
 const GetTitleId = async (title) => {
   let projectName = document.querySelector('select').value = title
@@ -60,6 +67,7 @@ function setRandomColorText(e) {
 
 
 document.querySelector('.generate-btn').addEventListener('click', setRandomColor)
+document.querySelector('.saving-btn').addEventListener('click', palettePicker)
 document.querySelector('.generate-btn').addEventListener('click', setRandomColorText)
 document.addEventListener("DOMContentLoaded", setRandomColor);
 document.addEventListener("DOMContentLoaded", setRandomColorText);
