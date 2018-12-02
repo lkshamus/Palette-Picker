@@ -133,26 +133,43 @@ const fetchPalettes = async () => {
       return response.json();
     })
     .then(function(palettes) {
-      console.log(palettes)
       for (let x in palettes) {
         for (let i in projects) {
           if (projects[i].id === palettes[x].project_id) {
-            let newProject = document.createElement('li')
-            newProject.innerHTML =
-              `<p>${projects[i].title}</p>`
-            let listProjects = document.querySelector('.list')
-            listProjects.appendChild(newProject)  
-            let newPalette = document.createElement('div')
-            newPalette.innerHTML = 
-                `<div class='colors-saved'>
-                   <p>palette title: ${palettes[x].title}</p>
-                   <div class='colorful1' style='background-color:${palettes[x].color1}'> ${palettes[x].color1 || ''} </div>
-                   <div class='colorful2' style='background-color:${palettes[x].color2}'> ${palettes[x].color2 || ''} </div>
-                   <div class='colorful3' style='background-color:${palettes[x].color3}'> ${palettes[x].color3 || ''} </div>
-                   <div class='colorful4' style='background-color:${palettes[x].color4}'> ${palettes[x].color4 || ''} </div>
-                   <div class='colorful5' style='background-color:${palettes[x].color5}'> ${palettes[x].color5 || ''} </div>
-                 </div>`
-            newProject.appendChild(newPalette)
+            console.log(projects[i].title, palettes[x].title)
+              let newProject = document.createElement('li')
+              let newPalette = document.createElement('div')
+              newProject.setAttribute('id', `palettes${x}`)
+              newProject.setAttribute('id', `project${i}`)
+              if (!document.getElementById(`project${i}`)) {
+                newProject.innerHTML =
+                `<p>${projects[i].title}</p>`
+                let listProjects = document.querySelector('.list')
+                listProjects.appendChild(newProject)  
+                 newPalette.innerHTML = 
+                  `<div class='colors-saved${x}'>
+                     <p>palette title: ${palettes[x].title}</p>
+                     <div class='colorful1' style='background-color:${palettes[x].color1}'> ${palettes[x].color1 || ''} </div>
+                     <div class='colorful2' style='background-color:${palettes[x].color2}'> ${palettes[x].color2 || ''} </div>
+                     <div class='colorful3' style='background-color:${palettes[x].color3}'> ${palettes[x].color3 || ''} </div>
+                     <div class='colorful4' style='background-color:${palettes[x].color4}'> ${palettes[x].color4 || ''} </div>
+                     <div class='colorful5' style='background-color:${palettes[x].color5}'> ${palettes[x].color5 || ''} </div>
+                   </div>`
+              newProject.appendChild(newPalette)
+              } else { 
+                console.log('this is the ELSE')
+                 newPalette.innerHTML = 
+                  `<div class='colors-saved${x}'>
+                     <p>palette title: ${palettes[x].title}</p>
+                     <div class='colorful1' style='background-color:${palettes[x].color1}'> ${palettes[x].color1 || ''} </div>
+                     <div class='colorful2' style='background-color:${palettes[x].color2}'> ${palettes[x].color2 || ''} </div>
+                     <div class='colorful3' style='background-color:${palettes[x].color3}'> ${palettes[x].color3 || ''} </div>
+                     <div class='colorful4' style='background-color:${palettes[x].color4}'> ${palettes[x].color4 || ''} </div>
+                     <div class='colorful5' style='background-color:${palettes[x].color5}'> ${palettes[x].color5 || ''} </div>
+                   </div>`
+                document.querySelector(`#project${i}`).appendChild(newPalette)
+              }
+
             // $('.colorful1').css('background-color', palettes[x].color1)
           }
         }

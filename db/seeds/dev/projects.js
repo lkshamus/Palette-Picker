@@ -12,7 +12,7 @@ let projectsData = [{
 {
   title: 'Project2',
   palettes: [{
-    title: 'palette1',
+    title: 'palette2',
     color1: 'black',
     color2: 'white',
     color3: 'grey',
