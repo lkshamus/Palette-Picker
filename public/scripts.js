@@ -18,7 +18,6 @@ const setRandomColor = async (e) => {
       colors.push(color)
     }
   }
-  console.log('before post', colors)
 }
 
 const palettePicker = async (e) => {
@@ -111,18 +110,53 @@ const fetchProjects = () => {
       return response.json();
     })
     .then(function(projects) {
+      console.log('success')
       projects.map(project => {
-        let newProject = document.createElement('li')
-        newProject.innerHTML =
-          `<p>${project.title}</p>`
-        let listProjects = document.querySelector('.list')
-        listProjects.appendChild(newProject) 
+        // let newProject = document.createElement('li')
+        // newProject.innerHTML =
+        //   `<p>${project.title}</p>`
+        // let listProjects = document.querySelector('.list')
+        // listProjects.appendChild(newProject) 
         let displayProject = document.createElement('option')
         let displayList = document.querySelector('select')
         displayProject.innerHTML = 
           `<option>${project.title}<option>`
         displayList.appendChild(displayProject)
       })  
+    });  
+}
+
+const fetchPalettes = async () => {
+  let projects = await getProjectsforPalettes()
+  fetch('/api/v1/projects/palettes')
+    .then(function(response) {
+      return response.json();
+    })
+    .then(function(palettes) {
+      console.log(palettes)
+      for (let x in palettes) {
+        for (let i in projects) {
+          if (projects[i].id === palettes[x].project_id) {
+            let newProject = document.createElement('li')
+            newProject.innerHTML =
+              `<p>${projects[i].title}</p>`
+            let listProjects = document.querySelector('.list')
+            listProjects.appendChild(newProject)  
+            let newPalette = document.createElement('div')
+            newPalette.innerHTML = 
+                `<div class='colors-saved'>
+                   <p>palette title: ${palettes[x].title}</p>
+                   <div class='colorful1' style='background-color:${palettes[x].color1}'> ${palettes[x].color1 || ''} </div>
+                   <div class='colorful2' style='background-color:${palettes[x].color2}'> ${palettes[x].color2 || ''} </div>
+                   <div class='colorful3' style='background-color:${palettes[x].color3}'> ${palettes[x].color3 || ''} </div>
+                   <div class='colorful4' style='background-color:${palettes[x].color4}'> ${palettes[x].color4 || ''} </div>
+                   <div class='colorful5' style='background-color:${palettes[x].color5}'> ${palettes[x].color5 || ''} </div>
+                 </div>`
+            newProject.appendChild(newPalette)
+            // $('.colorful1').css('background-color', palettes[x].color1)
+          }
+        }
+      }
     });  
 }
 
@@ -144,9 +178,11 @@ const getProjectsforPalettes = async () => {
 }
 
 
+
+document.querySelector('.saving-btn').addEventListener('click', fetchPalettes)
+
 document.addEventListener("DOMContentLoaded", fetchProjects);
 document.querySelector('.save').addEventListener('click', saveBtn)
-
 document.querySelector('.color-palette1').addEventListener('click', lockColor)
 document.querySelector('.color-palette2').addEventListener('click', lockColor)
 document.querySelector('.color-palette3').addEventListener('click', lockColor)

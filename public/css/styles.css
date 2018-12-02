@@ -62,7 +62,17 @@ input {
   background-size: 50px;
 }
 
+.colors-saved {
+  display: flex;
+}
 
+.colorful1,
+.colorful2,
+.colorful3,
+.colorful4,
+.colorful5 {
+  margin: 10px;
+}
 /*.project-header {
   margin: 10px 0 50px 0;
 }
