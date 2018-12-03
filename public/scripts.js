@@ -26,7 +26,6 @@ const palettePicker = async (e) => {
     const url = 'api/v1/projects/palettes'
     projectName = document.querySelector('select').value
     let project_id = await GetTitleId(projectName)
-    console.log(project_id)
     const optionsObject = {
       method: "POST", 
       body: JSON.stringify({title: paletteName, project_id: project_id, color1: colors[0], color2: colors[1], color3: colors[2], color4: colors[3], color5: colors[4]}),
@@ -37,13 +36,8 @@ const palettePicker = async (e) => {
     }
       const response = await fetch(url, optionsObject);
       colors = [];
-      console.log('after', colors)
       return await response.json();
   }
-
-// }
-
-// }
 
 const GetTitleId = async (title) => {
   let projectName = document.querySelector('select').value = title
@@ -110,7 +104,6 @@ const fetchProjects = () => {
       return response.json();
     })
     .then(function(projects) {
-      console.log('success')
       for (let i in projects) {
         let displayProject = document.createElement('option')
         displayProject.setAttribute('id', `project-list${i}`)
@@ -134,7 +127,6 @@ const fetchPalettes = async () => {
       for (let x in palettes) {
         for (let i in projects) {
           if (projects[i].id === palettes[x].project_id) {
-            console.log(projects[i].title, palettes[x].title)
               let newProject = document.createElement('li')
               let newPalette = document.createElement('div')
               newProject.setAttribute('id', `palettes${x}`)
@@ -147,7 +139,7 @@ const fetchPalettes = async () => {
                  newPalette.innerHTML = 
                   `<div class='colors-saved${x}'>
                   <div class='colors-saved'>
-                     <p>palette title: ${palettes[x].title}</p>
+                     <p class='palette-title-name'>palette title: ${palettes[x].title}</p>
                      <div class='colorful1' style='background-color:${palettes[x].color1}'> ${palettes[x].color1 || ''} </div>
                      <div class='colorful2' style='background-color:${palettes[x].color2}'> ${palettes[x].color2 || ''} </div>
                      <div class='colorful3' style='background-color:${palettes[x].color3}'> ${palettes[x].color3 || ''} </div>
@@ -160,7 +152,7 @@ const fetchPalettes = async () => {
                  newPalette.innerHTML = 
                   `<div class='colors-saved${x}'>
                     <div class='colors-saved'>
-                     <p>palette title: ${palettes[x].title}</p>
+                     <p class='palette-title-name'>palette title: ${palettes[x].title}</p>
                      <div class='colorful1' style='background-color:${palettes[x].color1}'> ${palettes[x].color1 || ''} </div>
                      <div class='colorful2' style='background-color:${palettes[x].color2}'> ${palettes[x].color2 || ''} </div>
                      <div class='colorful3' style='background-color:${palettes[x].color3}'> ${palettes[x].color3 || ''} </div>
@@ -189,19 +181,15 @@ const fetchProjectsForPalettes = () => {
 const getProjectsforPalettes = async () => {
   const response = await fetch('/api/v1/projects');
   const json = await response.json();
-  console.log(json);
   return json
 }
 
-
-
-document.querySelector('.saving-btn').addEventListener('click', fetchPalettes)
 document.addEventListener("DOMContentLoaded", fetchProjects);
 document.addEventListener("DOMContentLoaded", fetchPalettes);
+document.querySelector('.saving-btn').addEventListener('click', fetchPalettes)
 document.querySelector('.save').addEventListener('click', saveBtn)
 document.querySelector('.color-palette1').addEventListener('click', lockColor)
 document.querySelector('.color-palette2').addEventListener('click', lockColor)
 document.querySelector('.color-palette3').addEventListener('click', lockColor)
 document.querySelector('.color-palette4').addEventListener('click', lockColor)
 document.querySelector('.color-palette5').addEventListener('click', lockColor)
-
