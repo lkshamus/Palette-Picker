@@ -64,6 +64,13 @@ input {
 
 .colors-saved {
   display: flex;
+  margin: 0 0 0 20px;
+}
+
+.project-title {
+  font-size: 18px;
+  margin: 20px 0 0 0;
+  font-weight: bold;
 }
 
 .colorful1,
@@ -72,11 +79,16 @@ input {
 .colorful4,
 .colorful5 {
   margin: 10px;
+  width: 100px;
+  border-radius: 500px;
 }
-/*.project-header {
-  margin: 10px 0 50px 0;
+
+select {
+  position: relative;
+  height: 35px;
+  bottom: 4px;
+  outline: none;
 }
-*/
 
 li {
   list-style: none;
@@ -89,6 +101,7 @@ li {
 .new-project {
   display: flex;
   justify-content: center;
+  margin-bottom: 50px;
 }
 
 .bottom {
