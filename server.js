@@ -7,16 +7,21 @@ const database = require('knex')(config)
 
 app.use(bodyParser.json());
 
+//this allows us to serve up static files
 app.use(express.static('public'));
 
+//this tells which port to run the server on
 app.set('port', process.env.PORT || 3000)
 
+//this is how our html comes up in the browser when connected to the server
 app.get('/', (request, response) => {
   response.sendFile('./index.html', {root: 'public' })
 })
 
+//gives a temporary titled name
 app.locals.title = 'Palette Picker'
 
+//handles get request to return projects information 
 app.get('/api/v1/projects', (request, response) => {
   database('projects').select()
     .then(projects => {
@@ -27,6 +32,7 @@ app.get('/api/v1/projects', (request, response) => {
     })
 })
 
+//handles get request to return palettes information 
 app.get('/api/v1/projects/palettes', (request, response) => {
   database('palettes').select()
       .then(palettes => {
@@ -37,6 +43,8 @@ app.get('/api/v1/projects/palettes', (request, response) => {
       })
 })
 
+
+//handles post to database to add new projects
 app.post('/api/v1/projects', (request, response) => {
 
   const project = request.body
@@ -56,10 +64,7 @@ app.post('/api/v1/projects', (request, response) => {
     })
 })
 
-
-
-
-
+// handles post to palette database to add more palettes
 app.post('/api/v1/projects/palettes', (request, response) => {
 
   const palette = request.body
@@ -81,16 +86,7 @@ app.post('/api/v1/projects/palettes', (request, response) => {
     })
 })
 
-
-
-
-
-
-
-
-
-
-
+//handles get request to return particular project
 app.get('/api/v1/projects/:id', (request, response) => {
   const { id } = request.params
 
@@ -99,6 +95,7 @@ app.get('/api/v1/projects/:id', (request, response) => {
     .catch(error => console.log(`Error fetching project: ${error.message}`))
 })
 
+//handles get request to return palette info
 app.get('/api/v1/projects/palettes', (request, response) => {
   database('palettes').select()
     .then(palettes => {
@@ -109,6 +106,8 @@ app.get('/api/v1/projects/palettes', (request, response) => {
     })
 })
 
+
+//waits for app to connect to port and send message when running
 app.listen(app.get('port'), () => {
   console.log(`${app.locals.title} is running on ${app.get('port')}`);
 });
