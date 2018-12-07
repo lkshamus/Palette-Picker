@@ -68,7 +68,6 @@ app.post('/api/v1/projects', (request, response) => {
 app.post('/api/v1/projects/palettes', (request, response) => {
 
   const palette = request.body
-  console.log
 
   for(let requiredParam of ['title']) {
     console.log('required param', requiredParam)
