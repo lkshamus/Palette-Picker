@@ -68,7 +68,6 @@ app.post('/api/v1/projects', (request, response) => {
 app.post('/api/v1/projects/palettes', (request, response) => {
 
   const palette = request.body
-  console.log
 
   for(let requiredParam of ['title']) {
     console.log('required param', requiredParam)
@@ -104,6 +103,27 @@ app.get('/api/v1/projects/palettes', (request, response) => {
     .catch(error => {
       response.status(500).json({ error: error.message })
     })
+})
+
+app.get('/api/v1/projects/palettes/:id', (request, response) => {
+  const { id } = request.params
+
+  database('palettes').where('id', id).select()
+    .then(palette => response.status(200).json(palette))
+    .catch(error => console.log(`Error fetching palette: ${error.message}`))
+})
+
+app.delete('/api/v1/projects/palettes/:id', (request, response) => {
+  const { id } = request.params
+
+  database('palettes').where('id', id).del()
+  .then( () => database('palettes').where('id', id).del())
+  .then(album => {
+    response.status(201).json(id)
+  })
+  .catch(error => {
+    response.status(500).json({error: error.message})
+  })
 })
 
 
