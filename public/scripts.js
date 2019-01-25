@@ -130,16 +130,6 @@ const deleteData = (id) => {
   location.reload();
 }
 
-// function deleteData(item, url) {
-//   return fetch(url + '/' + item, {
-//     method: 'delete'
-//   }).then(response =>
-//     response.json().then(json => {
-//       return json;
-//     })
-//   );
-// }
-
 const fetchPalettes = async () => {
   let projects = await getProjectsforPalettes()
   fetch('/api/v1/projects/palettes')
@@ -165,13 +155,13 @@ const fetchPalettes = async () => {
                   `<div class='colors-saved${x}'>
                   <div class='colors-saved'>
                      <p class='palette-title-name'>palette title: ${palettes[x].title}</p>
-                     <div class='colorful1' style='background-color:${palettes[x].color1}'> ${palettes[x].color1 || ''} </div>
-                     <div class='colorful2' style='background-color:${palettes[x].color2}'> ${palettes[x].color2 || ''} </div>
-                     <div class='colorful3' style='background-color:${palettes[x].color3}'> ${palettes[x].color3 || ''} </div>
-                     <div class='colorful4' style='background-color:${palettes[x].color4}'> ${palettes[x].color4 || ''} </div>
-                     <div class='colorful5' style='background-color:${palettes[x].color5}'> ${palettes[x].color5 || ''} </div>
+                     <div class='colorful1' style='background-color:${palettes[x].color1}'> <p class='color-num'>${palettes[x].color1 || ''} </p></div>
+                     <div class='colorful2' style='background-color:${palettes[x].color2}'> <p class='color-num'>${palettes[x].color2 || ''} </p></div>
+                     <div class='colorful3' style='background-color:${palettes[x].color3}'> <p class='color-num'>${palettes[x].color3 || ''} </p></div>
+                     <div class='colorful4' style='background-color:${palettes[x].color4}'> <p class='color-num'>${palettes[x].color4 || ''} </p></div>
+                     <div class='colorful5' style='background-color:${palettes[x].color5}'> <p class='color-num'>${palettes[x].color5 || ''} </p></div>
                      </div>
-                     <button onClick='deleteData(${palettes[x].id})'>delete</button>
+                     <button class='delete' onClick='deleteData(${palettes[x].id})'>delete</button>
                    </div>`
               newProject.appendChild(newPalette)
               } else { 
@@ -179,11 +169,12 @@ const fetchPalettes = async () => {
                   `<div class='colors-saved${x}'>
                     <div class='colors-saved'>
                      <p class='palette-title-name'>palette title: ${palettes[x].title}</p>
-                     <div class='colorful1' style='background-color:${palettes[x].color1}'> ${palettes[x].color1 || ''} </div>
-                     <div class='colorful2' style='background-color:${palettes[x].color2}'> ${palettes[x].color2 || ''} </div>
-                     <div class='colorful3' style='background-color:${palettes[x].color3}'> ${palettes[x].color3 || ''} </div>
-                     <div class='colorful4' style='background-color:${palettes[x].color4}'> ${palettes[x].color4 || ''} </div>
-                     <div class='colorful5' style='background-color:${palettes[x].color5}'> ${palettes[x].color5 || ''} </div>
+                     <div class='colorful1' style='background-color:${palettes[x].color1}'> <p class='color-num'>${palettes[x].color1 || ''} </p> </div>
+                     <div class='colorful2' style='background-color:${palettes[x].color2}'> <p class='color-num'>${palettes[x].color2 || ''} </p></div>
+                     <div class='colorful3' style='background-color:${palettes[x].color3}'> <p class='color-num'>${palettes[x].color3 || ''} </p></div>
+                     <div class='colorful4' style='background-color:${palettes[x].color4}'> <p class='color-num'>${palettes[x].color4 || ''} </p> </div>
+                     <div class='colorful5' style='background-color:${palettes[x].color5}'> <p class='color-num'>${palettes[x].color5 || ''} </p> <br />
+                     <button class='delete delete-else' onClick='deleteData(${palettes[x].id})'>delete</button>
                      </div>
                    </div>`
                 document.querySelector(`#project${i}`).appendChild(newPalette)
