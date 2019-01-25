@@ -119,13 +119,15 @@ const fetchProjects = () => {
 
 const deleteData = (id) => {
   console.log('whaaaaaa')
-  fetch(`/api/v1/projects/palettes/:${id}`, {
+  console.log(id)
+  fetch(`/api/v1/projects/palettes/${id}`, {
   method: 'delete'
   }).then( response => 
     response.json().then(json => {
       return json;
     })
   )
+  location.reload();
 }
 
 // function deleteData(item, url) {
@@ -169,7 +171,7 @@ const fetchPalettes = async () => {
                      <div class='colorful4' style='background-color:${palettes[x].color4}'> ${palettes[x].color4 || ''} </div>
                      <div class='colorful5' style='background-color:${palettes[x].color5}'> ${palettes[x].color5 || ''} </div>
                      </div>
-         
+                     <button onClick='deleteData(${palettes[x].id})'>delete</button>
                    </div>`
               newProject.appendChild(newPalette)
               } else { 
