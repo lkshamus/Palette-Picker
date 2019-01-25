@@ -105,6 +105,27 @@ app.get('/api/v1/projects/palettes', (request, response) => {
     })
 })
 
+app.get('/api/v1/projects/palettes/:id', (request, response) => {
+  const { id } = request.params
+
+  database('palettes').where('id', id).select()
+    .then(palette => response.status(200).json(palette))
+    .catch(error => console.log(`Error fetching palette: ${error.message}`))
+})
+
+app.delete('/api/v1/projects/palettes/:id', (request, response) => {
+  const { id } = request.params
+
+  database('palettes').where('id', id).del()
+  .then( () => database('palettes').where('id', id).del())
+  .then(album => {
+    response.status(201).json(id)
+  })
+  .catch(error => {
+    response.status(500).json({error: error.message})
+  })
+})
+
 
 //waits for app to connect to port and send message when running
 app.listen(app.get('port'), () => {

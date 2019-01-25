@@ -117,6 +117,27 @@ const fetchProjects = () => {
   })
 }
 
+const deleteData = (id) => {
+  console.log('whaaaaaa')
+  fetch(`/api/v1/projects/palettes/:${id}`, {
+  method: 'delete'
+  }).then( response => 
+    response.json().then(json => {
+      return json;
+    })
+  )
+}
+
+// function deleteData(item, url) {
+//   return fetch(url + '/' + item, {
+//     method: 'delete'
+//   }).then(response =>
+//     response.json().then(json => {
+//       return json;
+//     })
+//   );
+// }
+
 const fetchPalettes = async () => {
   let projects = await getProjectsforPalettes()
   fetch('/api/v1/projects/palettes')
@@ -127,6 +148,8 @@ const fetchPalettes = async () => {
       for (let x in palettes) {
         for (let i in projects) {
           if (projects[i].id === palettes[x].project_id) {
+            let pallID = palettes[x].id 
+              console.log(pallID)
               let newProject = document.createElement('li')
               let newPalette = document.createElement('div')
               newProject.setAttribute('id', `palettes${x}`)
@@ -146,6 +169,7 @@ const fetchPalettes = async () => {
                      <div class='colorful4' style='background-color:${palettes[x].color4}'> ${palettes[x].color4 || ''} </div>
                      <div class='colorful5' style='background-color:${palettes[x].color5}'> ${palettes[x].color5 || ''} </div>
                      </div>
+         
                    </div>`
               newProject.appendChild(newPalette)
               } else { 
