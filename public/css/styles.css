@@ -64,7 +64,7 @@ input {
 
 .colors-saved {
   display: flex;
-  margin: 0 0 0 20px;
+  margin: 20px 0 0 20px;
 }
 
 .project-title {
@@ -78,9 +78,9 @@ input {
 .colorful3,
 .colorful4,
 .colorful5 {
-  margin: 10px;
+  margin: 5px;
   width: 100px;
-  border-radius: 500px;
+  height: 50px;
 }
 
 select {
@@ -123,6 +123,24 @@ li {
 .color-txt5 {
   position: relative;
   top: 400px;
+}
+
+.delete {
+  color: black;
+  font-size: 16px;
+  height: 20px;
+}
+
+.delete-else {
+  position: relative;
+  right: 685px;
+}
+
+.color-num {
+  position: relative;
+  left: 10px;
+  top: 10px;
+  font-size: 18px;
 }
 
 button{
