@@ -1,6 +1,6 @@
 # Palette-Picker
 
-https://lkshamus-palette-picker.herokuapp.com/
+### See it live: [here](https://lkshamus-palette-picker.herokuapp.com/)
 
 ## Description
 
