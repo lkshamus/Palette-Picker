@@ -9,14 +9,14 @@ Palette Picker is an interactive application that allows the user to add randomi
 ## Getting Started
 
 ### Prerequisites 
-In order to use the api, you must have the following installed:
+In order to use the access this locally, you must have the following installed:
 * [Node.js](https://nodejs.org/en/)
 * [NPM](https://nodejs.org/en/)
 
 ### Installation
 Clone down this repo 
 
-```` git clone https://github.com/lkshamus/BYOB.git ````
+```` git clone https://github.com/lkshamus/Palette-Picker.git ````
 
 Next install dependencies 
 
@@ -34,22 +34,6 @@ This will install
 Start the server with
 ````node server.js````
 (or ````nodemon```` if you have it installed).
-
-### Create local database
-
-Create database in PostgreSQL: 
-
-````psql````
-
-````CREATE DATABASE albumfinder;````
-
-Run migrations using: 
-
-````knex migrate:latest ````
-
-Seed database:
-
-````knex seed:run````
 
 ## Tech-stack used
 * Node.js
