@@ -127,6 +127,7 @@ const deleteData = (id) => {
       return json;
     })
   )
+  location.reload();
 }
 
 // function deleteData(item, url) {
